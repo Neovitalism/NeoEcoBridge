@@ -6,20 +6,20 @@ buildscript {
         }
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '[6.0,6.2)', changing: true
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
 
 minecraft {
-    mappings channel: 'official', version: '1.16.5'
+    mappings channel: 'official', version: '1.20.2'
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
-version = '1.16-1.0.0'
+version = '1.20-1.0.0'
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 group = 'me.neovitalism'
 
@@ -29,6 +29,7 @@ repositories {
         name 'Arclight API'
         url 'https://maven.izzel.io/releases'
     }
+    maven { url = 'https://maven.mohistmc.com/'}
     maven {
         url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
         content {
@@ -52,17 +53,15 @@ repositories {
 
 dependencies {
     implementation 'org.jetbrains:annotations:24.0.1'
-    minecraft 'net.minecraftforge:forge:1.16.5-36.2.34'
-    implementation fg.deobf('pixelmon:Pixelmon-1.16.5-9.1.12-server:9.1.12')
-    implementation 'io.izzel.arclight:arclight-api:1.2.7'
+    minecraft 'net.minecraftforge:forge:1.20.2-48.0.30'
+    implementation fg.deobf('pixelmon:Pixelmon-1.20.2-9.2.8-server:9.2.8')
+    implementation 'io.izzel.arclight:arclight-api:1.5.4'
 
     compileOnly files('libs/CMI-API9.6.5.0.jar')
     compileOnly files('libs/EssentialsX-2.20.1.jar')
     compileOnly files('libs/Vault.jar')
 
-    compileOnly 'io.izzel.arclight:arclight-forge-1.16:1.0.23:srg'
-    compileOnly 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
-    compileOnly 'org.spigotmc:spigot:1.16.5-R0.1-SNAPSHOT'
+    implementation 'com.mohistmc:mohistdev:1.20.2'
 }
 
 jar.finalizedBy('reobfJar')

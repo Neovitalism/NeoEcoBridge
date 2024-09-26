@@ -9,7 +9,7 @@ public interface HookedEconomy {
     String getSuccessMessage();
 
     default void syncBalance(UUID playerUUID) {
-        BankAccountProxy.getBankAccountUnsafe(playerUUID).updatePlayer();
+        BankAccountProxy.getBankAccountNow(playerUUID).updatePlayer();
     }
 
     default void syncBalance(UUID playerUUID, double balance) {
@@ -17,6 +17,6 @@ public interface HookedEconomy {
     }
 
     default void syncBalance(UUID playerUUID, BigDecimal balance) {
-        BankAccountProxy.getBankAccountUnsafe(playerUUID).updatePlayer(balance);
+        BankAccountProxy.getBankAccountNow(playerUUID).updatePlayer(balance);
     }
 }
