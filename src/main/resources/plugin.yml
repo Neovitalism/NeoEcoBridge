@@ -3,7 +3,7 @@ version: 1.0.1
 author: Neovitalism
 main: me.neovitalism.neoecobridge.NeoEcoBridge
 description: A plugin made to bridge economies between Pixelmon and Vault.
-api-version: 1.16
+api-version: 1.20
 
 softdepend: [Essentials, CMI]
 depend: [Vault]
