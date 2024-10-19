@@ -5,7 +5,7 @@ import com.pixelmonmod.pixelmon.api.util.helpers.NetworkHelper;
 import com.pixelmonmod.pixelmon.comm.packetHandlers.clientStorage.UpdateClientPlayerDataPacket;
 import me.neovitalism.neoecobridge.NeoEcoBridge;
 import net.milkbowl.vault.economy.Economy;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
+import net.minecraftforge.server.ServerLifecycleHooks;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 
