@@ -2,7 +2,6 @@ package me.neovitalism.neoecobridge.api;
 
 import com.pixelmonmod.pixelmon.api.economy.BankAccount;
 import com.pixelmonmod.pixelmon.api.economy.BankAccountProxy;
-import me.neovitalism.neoecobridge.NeoEcoBridge;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -24,7 +23,6 @@ public interface HookedEconomy {
     }
 
     default void syncBalance(BankAccount account, BigDecimal balance) {
-        if (!NeoEcoBridge.inst().shouldShowDecimals()) balance = BigDecimal.valueOf(balance.intValue());
         account.updatePlayer(balance);
     }
 }
