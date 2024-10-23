@@ -1,7 +1,11 @@
 package me.neovitalism.neoecobridge.economy;
 
 import com.pixelmonmod.pixelmon.api.economy.BankAccount;
+import com.pixelmonmod.pixelmon.api.util.helpers.NetworkHelper;
+import com.pixelmonmod.pixelmon.comm.packetHandlers.clientStorage.UpdateClientPlayerDataPacket;
+import me.neovitalism.neoecobridge.NeoEcoBridge;
 import net.milkbowl.vault.economy.Economy;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 
@@ -47,5 +51,14 @@ public class BridgedBankAccount implements BankAccount {
     @Override
     public boolean add(BigDecimal bigDecimal) {
         return this.economy.depositPlayer(this.player, bigDecimal.doubleValue()).transactionSuccess();
+    }
+
+    @Override
+    public void updatePlayer(BigDecimal amount) {
+        if (!NeoEcoBridge.inst().shouldShowDecimals()) amount = BigDecimal.valueOf(amount.intValue());
+        if (ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayer(this.getIdentifier()) != null) {
+            NetworkHelper.sendPacket(ServerLifecycleHooks.getCurrentServer().getPlayerList()
+                    .getPlayer(this.getIdentifier()), new UpdateClientPlayerDataPacket(amount));
+        }
     }
 }
